@@ -101,4 +101,12 @@ if __name__ == '__main__':
 
     image_decoded = image * 127.5 + 127.5
     image_decoded = image_decoded.astype(np.uint8)
+
+    lines_num = 0  # at what time was the electrifier run?
+
+    cv2.imwrite('partially_decoded_image.png', image_decoded)
+    coded_mesage = image_decoded[:lines_num, :, 0]
+    image_decoded = image_decoded[lines_num:]
+
+    print([chr(c) for c in coded_mesage.reshape(-1)])
     cv2.imwrite('decoded_image.png', image_decoded)
